@@ -11,6 +11,12 @@ public class Stack implements InterfaceStack{
         return size() == 0;
         
     }
+    
+    @Override
+    public void peek() {
+    	// TODO Auto-generated method stub
+    	stack.get(0);
+    }
 
     @Override
     public void push(String item) {
