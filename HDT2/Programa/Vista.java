@@ -1,3 +1,9 @@
+/**
+ * Esta clase es la vista del programa.
+ * @author: Linda Ines Jimenez Vides
+ * @version: 19 - febrero - 2022
+ */
+
 import java.util.Stack;
 import java.util.Scanner;
 
@@ -8,7 +14,10 @@ public class Vista{
     Scanner sn = new Scanner(System.in);
 
     String contenido = " ";
-    
+
+    /**
+     * Metodo que muestra el menu
+    */
     public int menu(){
         
         int opcion;
@@ -31,10 +40,16 @@ public class Vista{
         return opcion;
     }
 
+    /**
+     * Metodo que muestra el mensaje de despedida
+    */
     public void salir(){
         System.out.println("Gracias por utilizar la calculadora!");
     }
     
+    /**
+     * Metodo que permite al usuario insertar una expresiones
+    */
     public void insertarExpresion(){
         String s;
         Scanner sn = new Scanner(System.in);

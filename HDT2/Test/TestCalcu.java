@@ -1,3 +1,9 @@
+/**
+	* Test JUnit de la calculadora y el stack
+	* @author: Linda Ines Jimenez Vides
+	* @version: 19 - febrero - 2022
+*/
+
 import java.util.Stack;
 
 import junit.framework.TestCase;

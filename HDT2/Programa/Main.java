@@ -1,7 +1,15 @@
+/**
+ * Esta clase es el controlador del programa.
+ * @author: Linda Ines Jimenez Vides
+ * @version: 19 - febrero - 2022
+ */
+
 public class Main {
     public static void main(String[] args)  {
         
+        //Objeto tipo vista
         Vista vista = new Vista();
+        //Objeto tipo calculadora postfix
         CalcuPostfix cp = new CalcuPostfix(); 
 
         int opcion = 0;

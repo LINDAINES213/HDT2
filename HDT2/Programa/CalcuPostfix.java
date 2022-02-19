@@ -1,3 +1,9 @@
+/**
+ * Esta clase tiene los metodos de la calculadora
+ * @author: Linda Ines Jimenez Vides
+ * @version: 19 - febrero - 2022
+ */
+
 import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +16,10 @@ public class CalcuPostfix implements InterfaceCalculadora{
     Stack<Integer> stack2 = new Stack<Integer>();
     File datos = new File("datos.txt");
 
+    /**
+     * Este metodo evalua las expresiones y realiza la operacion
+     * @param String operacion
+    */
     public int evaluarOperacion(String operacion){
 
         try {
@@ -72,7 +82,9 @@ public class CalcuPostfix implements InterfaceCalculadora{
     }
 
     
-    
+    /**
+     * Este metodo lee el archivo txt con las operaciones
+    */
     public void leerOperacion(){
         
         boolean contains = false;

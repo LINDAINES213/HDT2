@@ -1,3 +1,9 @@
+/**
+ * Esta clase tiene los metodos que se utilizan en un stack
+ * @author: Linda Ines Jimenez Vides
+ * @version: 19 - febrero - 2022
+ */
+
 import java.util.ArrayList;
 
 public class Stack implements InterfaceStack{
