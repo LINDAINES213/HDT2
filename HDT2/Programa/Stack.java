@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Stack implements InterfaceStack{
     
-    protected ArrayList<String> stack =  new ArrayList<String>();
+    private ArrayList<String> stack =  new ArrayList<String>();
 
     @Override
     public boolean isEmpty() {
