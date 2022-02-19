@@ -1,14 +1,14 @@
 import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.EmptyStackException;
-import java.util.Scanner;
-import java.util.NoSuchElementException;
+import java.io.IOException;
 
 public class CalcuPostfix implements InterfaceCalculadora{
 
     Stack<Integer> stack2 = new Stack<Integer>();
+    File datos = new File("datos.txt");
 
     public int evaluarOperacion(String operacion){
 
@@ -16,20 +16,20 @@ public class CalcuPostfix implements InterfaceCalculadora{
 
             for(int i = 0; i < operacion.length(); i++){
             
-                char c = operacion.charAt(i);
+                char S = operacion.charAt(i);
 
-                if(c == ' '){
+                if(S == ' '){
 
                     continue;
 
-                } else if(Character.isDigit(c)){
+                } else if(Character.isDigit(S)){
 
                     int num = 0;
 
-                    while(Character.isDigit(c)){
-                        num = num * 10 + (int) (c - '0');
+                    while(Character.isDigit(S)){
+                        num = num * 10 + (int) (S - '0');
                         i++;
-                        c = operacion.charAt(i);
+                        S = operacion.charAt(i);
                     }
 
                     i--;
@@ -41,14 +41,14 @@ public class CalcuPostfix implements InterfaceCalculadora{
                     int num1 = stack2.pop();
                     int num2 = stack2.pop();
 
-                    switch(c){
+                    switch(S){
 
                         case '+':
-                            stack2.push(num1+num2); 
+                            stack2.push(num2+num1); 
                         break;
 
                         case '-':
-                            stack2.push(num1-num2);
+                            stack2.push(num2-num1);
                         break;
 
                         case '/':
@@ -56,7 +56,7 @@ public class CalcuPostfix implements InterfaceCalculadora{
                         break;
 
                         case '*':
-                            stack2.push(num1*num2);
+                            stack2.push(num2*num1);
                         break;
                     }
                     
@@ -64,9 +64,9 @@ public class CalcuPostfix implements InterfaceCalculadora{
             
             }
 
-        } catch (Exception e) {       
-            //String m = "Stack Vacio" + e.getMessage();
-            throw new EmptyStackException();
+        } catch (Exception e) { 
+            System.out.println("STACK VACIO");
+            System.out.println(e.getMessage());      
         }
     return stack2.pop();    
     }
@@ -75,42 +75,60 @@ public class CalcuPostfix implements InterfaceCalculadora{
     
     public void leerOperacion(){
         
-        String contenido = " ";
+        boolean contains = false;
         File datos = new File("datos.txt");
-        Scanner sc;
-        boolean isEmpty = true;
+        BufferedReader operaciones = null;
+        
+        
+        if(!datos.exists()){
+            
+            try {
+                datos.createNewFile();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         
         try {
-            
-            sc = new Scanner(new File("datos.txt"));
-            FileReader leer = new FileReader("datos.txt");
-            BufferedReader operaciones = new BufferedReader(leer);
 
-            while(sc.hasNext()){
-                contenido = sc.nextLine();
-                
-                if(!contenido.isEmpty()){
-                    contenido = sc.nextLine();
-                    evaluarOperacion(contenido);
-                    System.out.println(evaluarOperacion(contenido));
-                    contenido = sc.nextLine();
-                    evaluarOperacion(contenido);
-                    System.out.println(evaluarOperacion(contenido));
-                    contenido = sc.nextLine();
-                    evaluarOperacion(contenido);
-                    System.out.println(evaluarOperacion(contenido));
-                    contenido = sc.nextLine();
-                    evaluarOperacion(contenido);
-                    System.out.println(evaluarOperacion(contenido));
-                    isEmpty = false;
+            FileReader leer = new FileReader("datos.txt");
+            operaciones = new BufferedReader(leer);
+            String texto = operaciones.readLine();
+
+            while(texto != null){
+
+                if(texto.contains("-") || texto.contains("+") || texto.contains("*") || texto.contains("/")){
+                    System.out.println("\nExpresion: " + texto);
+                    System.out.println("\nResultado: " + evaluarOperacion(texto));
+                    texto = operaciones.readLine();
+                    contains = true;
+
+                } else if (!contains){
+                    System.out.println("No se pudo leer la expresion");
                 }
             }
             
-        } catch (NoSuchElementException e) {
-            System.out.println("\nBUSQUEDA FINALIZADA\n");
+        } catch (FileNotFoundException e) {
+            System.out.println("\nARCHIVO NO ENCONTRADO\n");
 
         } catch (Exception e) { 
-            System.out.println("\nERROR EN LA CARGA DE OPERACIONES\n");
+            System.out.println("\nERROR EN LA CARGA DE EXPRESIONES\n");
+        }
+        
+        finally{
+            
+            try {
+
+                if(operaciones != null){
+                    operaciones.close();
+                }
+
+            } catch (Exception e) {
+                //TODO: handle exception
+                System.out.println("ERROR DE CARGA DE EXPRESIONES");
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
