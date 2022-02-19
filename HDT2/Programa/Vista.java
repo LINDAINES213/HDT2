@@ -1,45 +1,47 @@
 import java.util.Stack;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
 public class Vista{
 
     CalcuPostfix cp = new CalcuPostfix();
     Stack<Integer> stack2;
+    Scanner sn = new Scanner(System.in);
 
     String contenido = " ";
     
-    public void leerOperacion(){
+    public int menu(){
         
-        File datos = new File("datos.txt");
-        Scanner sc;
-        
-        
-        try {
-            
-            sc = new Scanner(new File("datos.txt"));
-            FileReader leer = new FileReader(datos);
-            BufferedReader operaciones = new BufferedReader(leer);
+        int opcion;
 
-            while(sc.hasNext()){
-                contenido = sc.next();
-                if(contenido.isEmpty()){
-                    System.out.println("Stack Vacio");
-                } else{
-                    cp.evaluarOperacion(contenido);
-                    System.out.println(cp.evaluarOperacion(contenido));
-                }
-            }
-        
-        
-        
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        System.out.println();
+        System.out.println();
+        System.out.println("------------ CALCULADORA DE EXPRESIONES POSTFIX ------------");
+        System.out.println();
+        System.out.println("Bienvendo a la calculadora de expresiones postfix");
+        System.out.println("Puedes calcular una expresion postfix insertandola o utilizando un documento txt");
+        System.out.println("Hora de Empezar! Elija una opcion:");
+        System.out.println("\n---------------------------------------------------------------------------------------------------------------------");
+
+        String menuPrincipal = "1. Leer documento (txt) con expresiones postfix\n" + 
+                                "2. Insertar expresion postfix\n" + 
+                                "3. Salir\n";
+
+        System.out.println(menuPrincipal);
+        opcion = sn.nextInt();
+        return opcion;
+    }
+
+    public void salir(){
+        System.out.println("Gracias por utilizar la calculadora!");
+    }
+    
+    public void insertarExpresion(){
+        String s;
+        Scanner sn = new Scanner(System.in);
+
+        System.out.println("Inserte la expresion: ");
+        s = sn.nextLine();
+        System.out.println("\nResultado: " + cp.evaluarOperacion(s));
     }
     
 }
