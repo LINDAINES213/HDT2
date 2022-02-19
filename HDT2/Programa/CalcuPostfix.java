@@ -10,7 +10,7 @@ public class CalcuPostfix implements InterfaceCalculadora{
 
     Stack<Integer> stack2 = new Stack<Integer>();
 
-    public int Evaluar(String operacion){
+    public int evaluarOperacion(String operacion){
 
         try {
 
@@ -91,17 +91,17 @@ public class CalcuPostfix implements InterfaceCalculadora{
                 
                 if(!contenido.isEmpty()){
                     contenido = sc.nextLine();
-                    Evaluar(contenido);
-                    System.out.println(Evaluar(contenido));
+                    evaluarOperacion(contenido);
+                    System.out.println(evaluarOperacion(contenido));
                     contenido = sc.nextLine();
-                    Evaluar(contenido);
-                    System.out.println(Evaluar(contenido));
+                    evaluarOperacion(contenido);
+                    System.out.println(evaluarOperacion(contenido));
                     contenido = sc.nextLine();
-                    Evaluar(contenido);
-                    System.out.println(Evaluar(contenido));
+                    evaluarOperacion(contenido);
+                    System.out.println(evaluarOperacion(contenido));
                     contenido = sc.nextLine();
-                    Evaluar(contenido);
-                    System.out.println(Evaluar(contenido));
+                    evaluarOperacion(contenido);
+                    System.out.println(evaluarOperacion(contenido));
                     isEmpty = false;
                 }
             }

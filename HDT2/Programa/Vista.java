@@ -29,8 +29,8 @@ public class Vista{
                 if(contenido.isEmpty()){
                     System.out.println("Stack Vacio");
                 } else{
-                    cp.Evaluar(contenido);
-                    System.out.println(cp.Evaluar(contenido));
+                    cp.evaluarOperacion(contenido);
+                    System.out.println(cp.evaluarOperacion(contenido));
                 }
             }
         

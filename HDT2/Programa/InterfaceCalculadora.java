@@ -1,4 +1,4 @@
 public interface InterfaceCalculadora{
 
-    int Evaluar(String operacion);
+    int evaluarOperacion(String operacion);
 }
